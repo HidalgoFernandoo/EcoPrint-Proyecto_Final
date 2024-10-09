@@ -1,0 +1,45 @@
+from gui.login import LoginFrame
+from gui.principal import PrincipalFrame
+from gui.registro import RegistroFrame
+from config.config import centrar_ventana
+
+import customtkinter as ctk
+
+
+# Utilizamos frames para que todo se muestre en una ventana
+class App(ctk.CTk):
+    def __init__(self):
+        super().__init__()
+
+        centrar_ventana(self, 1200, 800)
+        self.title("EcoPrint")
+
+        self.frame_actual = None
+        self.frame_cambiar("login")  # Mostrar el frame de inicio de sesión al iniciar
+
+    def frame_cambiar(self, frame_nombre):
+        # Destruir el frame actual para poner el nuevo
+        if self.frame_actual is not None:
+            self.frame_actual.destroy()
+
+        # Cambiar al nuevo frame seleccionado
+        if frame_nombre == "login":
+            self.frame_actual = LoginFrame(self, self.frame_cambiar)
+        elif frame_nombre == "registrar":
+            self.frame_actual = RegistroFrame(self, self.frame_cambiar)
+        elif frame_nombre == "principal":
+            self.frame_actual = PrincipalFrame(self)
+
+        # Empaquetar el nuevo frame
+        self.frame_actual.pack(fill="both", expand=True)
+
+
+def run_app():
+    app = App()
+    app.mainloop()  # Ejecutar la ventana principal
+
+
+if (
+    __name__ == "__main__"
+):  # Nos aseguramos que el programa se ejecuta desde el archivo main
+    run_app()
