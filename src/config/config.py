@@ -1,3 +1,5 @@
+# En este archivo van las constantes, ajustes generales.
+
 import customtkinter as ctk
 
 
