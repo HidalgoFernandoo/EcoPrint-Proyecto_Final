@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from gui.terminos_condiciones import Terminos_CondicionesFrame
+from core.usuarios import *
 
 
 class RegistroFrame(ctk.CTkFrame):
@@ -10,18 +11,23 @@ class RegistroFrame(ctk.CTkFrame):
         self.label = ctk.CTkLabel(self, text="Registrarse")
         self.label.pack(pady=20)
 
-        self.correo = ctk.CTkEntry(self, placeholder_text="Correo electrónico")
-        self.correo.pack(pady=(0, 10), padx=0)
+        self.usuario_correo = ctk.CTkEntry(self, placeholder_text="Correo electrónico")
+        self.usuario_correo.pack(pady=(0, 10), padx=0)
 
-        self.usuario_nombre = ctk.CTkEntry(self, placeholder_text="Usuario")
+        self.usuario_nombre = ctk.CTkEntry(self, placeholder_text="Nombre")
         self.usuario_nombre.pack(pady=(0, 10), padx=0)
+
+        self.usuario_apellido = ctk.CTkEntry(self, placeholder_text="Apellido")
+        self.usuario_apellido.pack(pady=(0, 10), padx=0)
 
         self.usuario_contrasena = ctk.CTkEntry(
             self, show="*", placeholder_text="Contraseña"
         )
         self.usuario_contrasena.pack(pady=(0, 10), padx=0)
 
-        self.registrar_button = ctk.CTkButton(self, text="Registrarse")
+        self.registrar_button = ctk.CTkButton(
+            self, text="Registrarse", command=self.verificar_campos
+        )
         self.registrar_button.pack(pady=(0, 10), padx=0)
 
         self.frameTerminos = ctk.CTkFrame(self, fg_color="transparent")
@@ -52,3 +58,31 @@ class RegistroFrame(ctk.CTkFrame):
 
     def volver_login(self):
         self.frame_cambiar("login")
+
+    def verificar_campos(self):
+        # Validar campos vacíos
+        if not self.usuario_correo.get() or "@" not in self.usuario_correo.get():
+            # FALTA label debes ingresar un correo válido
+            # FALTA agregar para verificar que el CORREO ELECTRÓNICO es válido
+            return
+        if not self.usuario_contrasena.get() or len(self.usuario_contrasena.get()) < 10:
+            # FALTA label debes ingresar una contrasena válida, recuerda que debe tener al menos 10 caracteres
+            return
+        if not self.usuario_nombre.get():
+            # FALTA label debes ingresar un nombre
+            return
+        if not self.usuario_apellido.get():
+            # FALTA label debes ingresar un apellido
+            return
+        if not self.terminosCheckbox.get() == "on":
+            # Falta label debes aceptar los terminos y condiciones
+            return
+
+        # Si los campos son correctos, registrar usuario
+        usuario = Usuario()
+        usuario.registrar_usuario(
+            self.usuario_correo.get(),
+            self.usuario_contrasena.get(),
+            self.usuario_nombre.get(),
+            self.usuario_apellido.get(),
+        )

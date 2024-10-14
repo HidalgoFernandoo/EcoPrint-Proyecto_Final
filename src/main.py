@@ -25,12 +25,11 @@ class App(ctk.CTk):
         # Cambiar al nuevo frame seleccionado
         if frame_nombre == "login":
             self.frame_actual = LoginFrame(self, self.frame_cambiar)
-        elif frame_nombre == "registrar":
+        if frame_nombre == "registrar":
             self.frame_actual = RegistroFrame(self, self.frame_cambiar)
-        elif frame_nombre == "principal":
+        if frame_nombre == "principal":
             self.frame_actual = PrincipalFrame(self)
 
-        # Empaquetar el nuevo frame
         self.frame_actual.pack(fill="both", expand=True)
 
 

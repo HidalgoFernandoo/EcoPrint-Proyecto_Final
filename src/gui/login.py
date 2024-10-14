@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from core.usuarios import *
 
 
 class LoginFrame(ctk.CTkFrame):
@@ -12,8 +13,8 @@ class LoginFrame(ctk.CTkFrame):
         self.label = ctk.CTkLabel(self, text="Iniciar Sesión")
         self.label.pack(pady=20)
 
-        self.usuario_nombre = ctk.CTkEntry(self, placeholder_text="Usuario")
-        self.usuario_nombre.pack(pady=10)
+        self.usuario_correo = ctk.CTkEntry(self, placeholder_text="Correo")
+        self.usuario_correo.pack(pady=10)
 
         self.usuario_contrasena = ctk.CTkEntry(
             self, placeholder_text="Contraseña", show="*"
@@ -38,8 +39,21 @@ class LoginFrame(ctk.CTkFrame):
         self.registrar_button.pack(pady=(0, 10), padx=0)
 
     def login(self):
-        # Aca falta la lógica de validación del inicio de sesión (con MySQL)
-        # If validación es exitosa, cambia a la ventana principal
+        if not self.usuario_correo.get():
+            # FALTA label "Debes ingresar un correo"
+            return
+        if not self.usuario_contrasena.get():
+            # FALTA label "Debes ingresar una contrasena"
+            return
+
+        usuario_logeado = Usuario()
+
+        # Verificar usuario
+        if not usuario_logeado.verificar_usuario(
+            self.usuario_correo.get(), self.usuario_contrasena.get()
+        ):
+            # FALTA label "Usuario o contrasena incorrecto"
+            return
         self.frame_cambiar("principal")
 
     def registrarse(self):
