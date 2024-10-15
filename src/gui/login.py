@@ -16,10 +16,10 @@ class LoginFrame(ctk.CTkFrame):
         self.usuario_correo = ctk.CTkEntry(self, placeholder_text="Correo")
         self.usuario_correo.pack(pady=10)
 
-        self.usuario_contrasena = ctk.CTkEntry(
+        self.__usuario_contrasena = ctk.CTkEntry(
             self, placeholder_text="Contraseña", show="*"
         )
-        self.usuario_contrasena.pack(pady=10)
+        self.__usuario_contrasena.pack(pady=10)
 
         self.login_button = ctk.CTkButton(
             self, text="Iniciar Sesión", command=self.login
@@ -42,15 +42,17 @@ class LoginFrame(ctk.CTkFrame):
         if not self.usuario_correo.get():
             # FALTA label "Debes ingresar un correo"
             return
-        if not self.usuario_contrasena.get():
+        if not self.__usuario_contrasena.get():
             # FALTA label "Debes ingresar una contrasena"
             return
 
-        usuario_logeado = Usuario()
+        usuario_logeado = Usuario(
+            self.usuario_correo.get(), self.__usuario_contrasena.get()
+        )
 
         # Verificar usuario
         if not usuario_logeado.verificar_usuario(
-            self.usuario_correo.get(), self.usuario_contrasena.get()
+            self.usuario_correo.get(), self.__usuario_contrasena.get()
         ):
             # FALTA label "Usuario o contrasena incorrecto"
             return

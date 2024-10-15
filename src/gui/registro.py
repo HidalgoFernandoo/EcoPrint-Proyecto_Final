@@ -20,10 +20,10 @@ class RegistroFrame(ctk.CTkFrame):
         self.usuario_apellido = ctk.CTkEntry(self, placeholder_text="Apellido")
         self.usuario_apellido.pack(pady=(0, 10), padx=0)
 
-        self.usuario_contrasena = ctk.CTkEntry(
+        self.__usuario_contrasena = ctk.CTkEntry(
             self, show="*", placeholder_text="Contraseña"
         )
-        self.usuario_contrasena.pack(pady=(0, 10), padx=0)
+        self.__usuario_contrasena.pack(pady=(0, 10), padx=0)
 
         self.registrar_button = ctk.CTkButton(
             self, text="Registrarse", command=self.verificar_campos
@@ -65,7 +65,10 @@ class RegistroFrame(ctk.CTkFrame):
             # FALTA label debes ingresar un correo válido
             # FALTA agregar para verificar que el CORREO ELECTRÓNICO es válido
             return
-        if not self.usuario_contrasena.get() or len(self.usuario_contrasena.get()) < 10:
+        if (
+            not self.__usuario_contrasena.get()
+            or len(self.__usuario_contrasena.get()) < 10
+        ):
             # FALTA label debes ingresar una contrasena válida, recuerda que debe tener al menos 10 caracteres
             return
         if not self.usuario_nombre.get():
@@ -79,10 +82,10 @@ class RegistroFrame(ctk.CTkFrame):
             return
 
         # Si los campos son correctos, registrar usuario
-        usuario = Usuario()
+        usuario = Usuario(
+            self.usuario_correo.get(), self.__usuario_contrasena.get()
+        )
         usuario.registrar_usuario(
-            self.usuario_correo.get(),
-            self.usuario_contrasena.get(),
             self.usuario_nombre.get(),
             self.usuario_apellido.get(),
         )

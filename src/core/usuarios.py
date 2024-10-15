@@ -4,16 +4,22 @@ import bcrypt  # Para enscriptar contraseñas
 
 
 class Usuario:
-    def encriptar_contrasena(self, contrasena):
-        #Genera una cadena de texto aleatoria en formato de bytes
-        salt = bcrypt.gensalt()
-        hashed = bcrypt.hashpw(contrasena.encode("utf-8"), salt)
-        return hashed
+    def __init__(self, correo, contrasena):
+        self.correo = correo
+        self.__contrasena = contrasena
 
-    def registrar_usuario(self, correo, contrasena, nombre, apellido):
+    def encriptar_contrasena(self):
+        # Genera una cadena de texto aleatoria en formato de bytes
+        salt = bcrypt.gensalt()
+        self.__hashed = bcrypt.hashpw(self.__contrasena.encode("utf-8"), salt)
+        return self.__hashed
+
+    def registrar_usuario(self, nombre, apellido):
+        self.nombre = nombre
+        self.apellido = apellido
         try:
-            hashed = self.encriptar_contrasena(contrasena)
-            valores = (correo, hashed, nombre, apellido)
+            self.__hashed = self.encriptar_contrasena()
+            valores = (self.correo, self.__hashed, self.nombre, self.apellido)
             sql = "insert into usuarios values(null, %s, %s, %s, %s)"
 
             conexion = conectar_db()
@@ -28,6 +34,7 @@ class Usuario:
 
     def verificar_usuario(self, correo_ingresado, contrasena_ingresada):
         try:
+            self.__contrasena_ingresada = contrasena_ingresada
             conexion = conectar_db()
             cursor = conexion.cursor()
 
@@ -41,9 +48,9 @@ class Usuario:
             conexion.close()
 
             if resultado:
-                hashed = resultado[0]  # Obtiene la contraseña del resultado
+                self.__hashed = resultado[0]  # Obtiene la contraseña del resultado
                 if bcrypt.checkpw(
-                    contrasena_ingresada.encode("utf-8"), hashed.encode("utf-8")
+                    self.__contrasena_ingresada.encode("utf-8"), self.__hashed.encode("utf-8")
                 ):
                     return True
                 else:
