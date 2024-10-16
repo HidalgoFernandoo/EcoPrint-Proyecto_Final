@@ -13,11 +13,11 @@ class LoginFrame(ctk.CTkFrame):
 
         
         self.label_bienvenida = crear_label(
-            self, text="¡Bienvenido a EcoPrint!", font=("", 32, "bold"), pady=(100, 50), text_color=COLOR_PRIMARIO,
+            self, text="¡Bienvenido a EcoPrint!", font=("Roboto", 32, "bold"), pady=(100, 50), text_color=COLOR_PRIMARIO,
         )
 
         self.label_login = crear_label(
-            self, text="Inicia Sesión", font=("", 18, "bold")
+            self, text="Inicia Sesión", font=("Roboto", 18, "bold")
         )
 
         self.usuario_correo = crear_entry(
@@ -33,7 +33,7 @@ class LoginFrame(ctk.CTkFrame):
 
         self.label_registrar = crear_label(
             self, text="¿No tienes una cuenta? ¡Registrate!",
-            font=("", 18, "bold"), pady=(90, 0)
+            font=("Roboto", 18, "bold"), pady=(90, 0)
         )
 
         self.registrar_button = crear_boton(

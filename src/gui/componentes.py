@@ -10,7 +10,7 @@ def crear_boton(parent, text, command=None, pady=20, **kwargs):
         width=350,
         height=40,
         corner_radius=8,
-        font=("", 16, "bold"),
+        font=("Roboto", 14, "bold"),
         fg_color=COLOR_PRIMARIO,
         hover_color=COLOR_PRIMARIO_HOVER,
         **kwargs
@@ -27,6 +27,7 @@ def crear_entry(parent, placeholder_text="", pady=10, **kwargs):
         width=350,
         height=40,
         corner_radius=8,
+        font=("Roboto", 14),
         border_color=COLOR_PRIMARIO,
         **kwargs
     )

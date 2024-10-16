@@ -1,10 +1,9 @@
 from gui.login import LoginFrame
 from gui.principal import PrincipalFrame
 from gui.registro import RegistroFrame
-from config.config import centrar_ventana
+from config.config import *
 
 import customtkinter as ctk
-
 
 # Utilizamos frames para que todo se muestre en una ventana
 class App(ctk.CTk):

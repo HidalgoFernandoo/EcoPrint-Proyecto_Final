@@ -23,7 +23,7 @@ class RegistroFrame(ctk.CTkFrame):
         self.usuario_apellido = crear_entry(
             self, placeholder_text="Apellido")
 
-        self.__usuario_contrasena = ctk.CTkEntry(
+        self.__usuario_contrasena = crear_entry(
             self, show="*", placeholder_text="Contraseña"
         )
 

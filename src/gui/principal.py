@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from config.config import *
 
 
 class PrincipalFrame(ctk.CTkFrame):  # Otra vista (frame) para la ventana principal
