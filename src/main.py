@@ -12,7 +12,7 @@ class App(ctk.CTk):
 
         centrar_ventana(self, 1200, 800)
         self.title("EcoPrint")
-
+        self.minsize(width=1200, height=800)
         self.frame_actual = None
         self.frame_cambiar("login")  # Mostrar el frame de inicio de sesión al iniciar
 
