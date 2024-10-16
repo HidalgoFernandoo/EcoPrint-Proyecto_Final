@@ -1,6 +1,8 @@
 import customtkinter as ctk
 from gui.terminos_condiciones import Terminos_CondicionesFrame
 from core.usuarios import *
+from config.config import *
+from gui.componentes import *
 
 
 class RegistroFrame(ctk.CTkFrame):
@@ -8,27 +10,26 @@ class RegistroFrame(ctk.CTkFrame):
         super().__init__(master)
         self.frame_cambiar = frame_cambiar
 
-        self.label = ctk.CTkLabel(self, text="Registrarse")
-        self.label.pack(pady=20)
+        self.label_registrar = crear_label(
+            self, text="Registrarse", font=("", 18, "bold")
+        )
 
-        self.usuario_correo = ctk.CTkEntry(self, placeholder_text="Correo electrónico")
-        self.usuario_correo.pack(pady=(0, 10), padx=0)
+        self.usuario_correo = crear_entry(
+            self, placeholder_text="Correo electrónico")
 
-        self.usuario_nombre = ctk.CTkEntry(self, placeholder_text="Nombre")
-        self.usuario_nombre.pack(pady=(0, 10), padx=0)
+        self.usuario_nombre = crear_entry(
+            self, placeholder_text="Nombre")
 
-        self.usuario_apellido = ctk.CTkEntry(self, placeholder_text="Apellido")
-        self.usuario_apellido.pack(pady=(0, 10), padx=0)
+        self.usuario_apellido = crear_entry(
+            self, placeholder_text="Apellido")
 
         self.__usuario_contrasena = ctk.CTkEntry(
             self, show="*", placeholder_text="Contraseña"
         )
-        self.__usuario_contrasena.pack(pady=(0, 10), padx=0)
 
-        self.registrar_button = ctk.CTkButton(
+        self.registrar_button = crear_boton(
             self, text="Registrarse", command=self.verificar_campos
         )
-        self.registrar_button.pack(pady=(0, 10), padx=0)
 
         self.frameTerminos = ctk.CTkFrame(self, fg_color="transparent")
         self.frameTerminos.pack(pady=(0, 10), padx=105, fill="x")

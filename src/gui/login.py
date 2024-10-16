@@ -1,5 +1,7 @@
 import customtkinter as ctk
 from core.usuarios import *
+from config.config import *
+from gui.componentes import *
 
 
 class LoginFrame(ctk.CTkFrame):
@@ -9,34 +11,34 @@ class LoginFrame(ctk.CTkFrame):
         # Guardamos la función para cambiar de frame
         self.frame_cambiar = frame_cambiar
 
-        # Configuración del frame (ventana de inicio de sesión)
-        self.label = ctk.CTkLabel(self, text="Iniciar Sesión")
-        self.label.pack(pady=20)
+        
+        self.label_bienvenida = crear_label(
+            self, text="¡Bienvenido a EcoPrint!", font=("", 32, "bold"), pady=(100, 50), text_color=COLOR_PRIMARIO,
+        )
 
-        self.usuario_correo = ctk.CTkEntry(self, placeholder_text="Correo")
-        self.usuario_correo.pack(pady=10)
+        self.label_login = crear_label(
+            self, text="Inicia Sesión", font=("", 18, "bold")
+        )
 
-        self.__usuario_contrasena = ctk.CTkEntry(
+        self.usuario_correo = crear_entry(
+            self, placeholder_text="Correo electrónico")
+
+        self.__usuario_contrasena = crear_entry(
             self, placeholder_text="Contraseña", show="*"
         )
-        self.__usuario_contrasena.pack(pady=10)
 
-        self.login_button = ctk.CTkButton(
+        self.login_button = crear_boton(
             self, text="Iniciar Sesión", command=self.login
         )
-        self.login_button.pack(pady=20)
 
-        self.label_registrar = ctk.CTkLabel(
-            self,
-            text="¿No tienes una cuenta? ¡Registrate!",
-            wraplength=210,
-            font=("", 16, "bold"),
+        self.label_registrar = crear_label(
+            self, text="¿No tienes una cuenta? ¡Registrate!",
+            font=("", 18, "bold"), pady=(90, 0)
         )
-        self.label_registrar.pack(pady=(90, 10), padx=20, fill="x")
-        self.registrar_button = ctk.CTkButton(
+
+        self.registrar_button = crear_boton(
             self, text="Registrarse", command=self.registrarse
         )
-        self.registrar_button.pack(pady=(0, 10), padx=0)
 
     def login(self):
         if not self.usuario_correo.get():
