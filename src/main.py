@@ -13,8 +13,10 @@ class App(ctk.CTk):
         centrar_ventana(self, 1200, 800)
         self.title("EcoPrint")
         self.minsize(width=1200, height=800)
+        # self.configure(fg_color=COLOR_BG)  # ARREGLAR: Color de fondo de la ventana
+        
         self.frame_actual = None
-        self.frame_cambiar("login")  # Mostrar el frame de inicio de sesión al iniciar
+        self.frame_cambiar("principal")  # Mostrar el frame de inicio de sesión al iniciar
 
     def frame_cambiar(self, frame_nombre):
         # Destruir el frame actual para poner el nuevo

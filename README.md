@@ -22,6 +22,26 @@ Esta aplicación está diseñada para conectar a personas interesadas en la cons
 
 - Python 3.12
 
+## ⚙️ Instalación
+
+Clona el proyecto
+
+```bash
+  git clone https://github.com/HidalgoFernandoo/EcoPrint-Proyecto_Final
+```
+
+Dirigite al directorio del proyecto
+
+```bash
+  cd EcoPrint-Proyecto_Final
+```
+
+Instala dependencias
+
+```bash
+  npm install
+```
+
 ## ✒️ Autores
 
 - [Jordana Orfano](https://www.github.com/JordanaOrfano)
