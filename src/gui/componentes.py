@@ -3,7 +3,7 @@ from config.config import *
 from PIL import Image
 
 
-def crear_boton(parent, text, command=None, pady=20, **kwargs):
+def crear_boton(parent, text, command=None, grid=False, pady=20, **kwargs):
     boton = ctk.CTkButton(
         parent,
         text=text,
@@ -16,7 +16,11 @@ def crear_boton(parent, text, command=None, pady=20, **kwargs):
         hover_color=COLOR_PRIMARIO_HOVER,
         **kwargs
     )
-    boton.pack(pady=pady, padx=50)
+    
+    if grid:
+        pass
+    else:
+        boton.pack(pady=pady, padx=50)
 
     return boton
 
@@ -46,7 +50,7 @@ def crear_imagen(route, size=(20, 20)):
     return ctk.CTkImage(Image.open(route), size=size)
 
 
-def crear_entry(parent, placeholder_text="", pady=10, **kwargs):
+def crear_entry(parent, placeholder_text="", grid=False, pady=10, **kwargs):
     entry = ctk.CTkEntry(
         parent,
         placeholder_text=placeholder_text,
@@ -57,21 +61,34 @@ def crear_entry(parent, placeholder_text="", pady=10, **kwargs):
         border_color=COLOR_PRIMARIO,
         **kwargs
     )
-    entry.pack(pady=pady)
+    
+    if grid:
+        pass
+    else:
+        entry.pack(pady=pady)
 
     return entry
 
 
-def crear_label(parent, text="", pady=10, **kwargs):
+def crear_label(parent, text="", pady=10, grid=False, font=("Roboto", 14), **kwargs):
     label = ctk.CTkLabel(
         parent,
         text=text,
-        width=350,
+        width=850,
         height=40,
         wraplength=500,
+        anchor="w",
         corner_radius=8,
+        font=font,
+        text_color=COLOR_PRIMARIO,
+        compound="left",
         **kwargs
     )
-    label.pack(pady=pady)
+    
+    if label:
+        pass
+    else:
+        label.pack(pady=pady)
+        
 
     return label

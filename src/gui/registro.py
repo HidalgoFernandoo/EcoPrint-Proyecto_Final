@@ -68,7 +68,7 @@ class RegistroFrame(ctk.CTkFrame):
             return
         if (
             not self.__usuario_contrasena.get()
-            or len(self.__usuario_contrasena.get()) < 10
+            or len(self.__usuario_contrasena.get()) < 5
         ):
             # FALTA label debes ingresar una contrasena válida, recuerda que debe tener al menos 10 caracteres
             return
