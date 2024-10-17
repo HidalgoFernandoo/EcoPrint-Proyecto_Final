@@ -13,7 +13,7 @@ class LoginFrame(ctk.CTkFrame):
 
         
         self.label_bienvenida = crear_label(
-            self, text="¡Bienvenido a EcoPrint!", font=("Roboto", 32, "bold"), pady=(100, 50), text_color=COLOR_PRIMARIO,
+            self, text="¡Bienvenido a EcoPrint!", font=("Roboto", 32, "bold"), pady=(100, 50),
         )
 
         self.label_login = crear_label(
