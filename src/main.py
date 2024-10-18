@@ -1,5 +1,5 @@
 from gui.login import LoginFrame
-from gui.principal import PrincipalFrame
+from gui.inicio import InicioFrame
 from gui.registro import RegistroFrame
 from config.config import *
 
@@ -26,8 +26,8 @@ class App(ctk.CTk):
             self.frame_actual = LoginFrame(self, self.frame_cambiar)
         if frame_nombre == "registrar":
             self.frame_actual = RegistroFrame(self, self.frame_cambiar)
-        if frame_nombre == "principal":
-            self.frame_actual = PrincipalFrame(self)
+        if frame_nombre == "inicio":
+            self.frame_actual = InicioFrame(self)
 
         self.frame_actual.pack(fill="both", expand=True)
 

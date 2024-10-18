@@ -58,7 +58,7 @@ class LoginFrame(ctk.CTkFrame):
         ):
             # FALTA label "Usuario o contrasena incorrecto"
             return
-        self.frame_cambiar("principal")
+        self.frame_cambiar("inicio")
 
     def registrarse(self):
         self.frame_cambiar("registrar")
