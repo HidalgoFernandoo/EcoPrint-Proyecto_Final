@@ -36,8 +36,11 @@ class Usuario:
         try:
             self.__contrasena_ingresada = contrasena_ingresada
             conexion = conectar_db()
-            cursor = conexion.cursor()
+            if conexion is None:
+                print("Error: No se pudo establecer la conexión a la base de datos")
+                return False
 
+            cursor = conexion.cursor()
             consulta = "SELECT contrasena FROM usuarios WHERE correo = %s"
             cursor.execute(consulta, (correo_ingresado,))
             resultado = (
