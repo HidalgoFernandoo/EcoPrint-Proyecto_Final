@@ -5,14 +5,15 @@ from config.config import *
 
 import customtkinter as ctk
 
+
 # Utilizamos frames para que todo se muestre en una ventana
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        centrar_ventana(self, 1200, 800)
+        centrar_ventana(self, 1300, 700)
         self.title("EcoPrint")
-        self.minsize(width=1200, height=800)
+        self.minsize(width=1300, height=700)
         self.frame_actual = None
         self.frame_cambiar("login")  # Mostrar el frame de inicio de sesión al iniciar
 
