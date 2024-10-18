@@ -17,29 +17,39 @@ class InicioFrame(ctk.CTkFrame):
             master=self, width=240, fg_color=COLOR_PRIMARIO)
         sideFrame.pack(side="left", fill="y")
 
+        # Centra el contenido del sideFrame
+        centrar_frame = ctk.CTkFrame(sideFrame, fg_color=COLOR_PRIMARIO)
+        centrar_frame.pack(expand=True)
+
+        ctk.CTkLabel(centrar_frame, text="EcoPrint", font=("Roboto", 32, "bold"),
+                     text_color=COLOR_BG, width=210).pack(pady=0)
+
+        ctk.CTkLabel(centrar_frame, text="", image=crear_imagen(
+            "src/assets/eco.png", size=(220, 220))).pack(pady=50)
+
         # Creación de botones en el sideFrame con el estado de selección inicial
         self.botones_sideframe["inicio"] = crear_boton_sideframe(
-            sideFrame, text="Inicio", command=self.inicio, pady=(250, 0),
+            centrar_frame, text="Inicio", command=self.inicio, pady=0,
             image=crear_imagen("src/assets/home.png")
         )
 
         self.botones_sideframe["crear_publicacion"] = crear_boton_sideframe(
-            sideFrame, text="Crear publicación", command=self.crear_publicacion,
+            centrar_frame, text="Crear publicación", command=self.crear_publicacion,
             image=crear_imagen("src/assets/pencil-plus.png")
         )
 
         self.botones_sideframe["perfil"] = crear_boton_sideframe(
-            sideFrame, text="Mi perfil", command=self.perfil,
+            centrar_frame, text="Mi perfil", command=self.perfil,
             image=crear_imagen("src/assets/user-circle.png")
         )
 
         self.botones_sideframe["configuracion"] = crear_boton_sideframe(
-            sideFrame, text="Configuración", command=self.configuraciones,
+            centrar_frame, text="Configuración", command=self.configuraciones,
             image=crear_imagen("src/assets/settings.png")
         )
 
         self.botones_sideframe["cerrar_sesion"] = crear_boton_sideframe(
-            sideFrame, text="Cerrar sesión", command=self.cerrar_sesion,
+            centrar_frame, text="Cerrar sesión", command=self.cerrar_sesion,
             image=crear_imagen("src/assets/logout.png")
         )
 
@@ -67,10 +77,6 @@ class InicioFrame(ctk.CTkFrame):
         frame_inicio = ctk.CTkScrollableFrame(master=self, fg_color=COLOR_BG)
         crear_label(
             frame_inicio, text="Inicio", font=("Roboto", 32, "bold"), pady=(30, 10),
-        )
-
-        self.btn = crear_boton(
-            frame_inicio, text="Registrarse",
         )
 
         self.cambiar_contenido(frame_inicio, "inicio")
