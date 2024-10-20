@@ -40,7 +40,7 @@ class InicioFrame(ctk.CTkFrame):
 
         self.botones_sideframe["perfil"] = crear_boton_sideframe(
             centrar_frame, text="Mi perfil", command=self.perfil,
-            image=crear_imagen("src/assets/user-circle.png")
+            image=crear_imagen("src/assets/user-circle-white.png")
         )
 
         self.botones_sideframe["configuracion"] = crear_boton_sideframe(
@@ -77,6 +77,16 @@ class InicioFrame(ctk.CTkFrame):
         frame_inicio = ctk.CTkScrollableFrame(master=self, fg_color=COLOR_BG)
         crear_label(
             frame_inicio, text="Inicio", font=("Roboto", 32, "bold"), pady=(30, 10),
+        )
+
+        MostrarPublicacion(
+            contenedor=frame_inicio,
+            titulo="Título del Evento",
+            descripcion="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            creador="Juan Perez",
+            fecha_creacion="18/10/2023",
+            fecha_evento="25/10/2024",
+            ubicacion="Ubicación 1234"
         )
 
         self.cambiar_contenido(frame_inicio, "inicio")
@@ -149,15 +159,15 @@ class InicioFrame(ctk.CTkFrame):
 
     def enviar_publicacion(self):
         # Obtener los datos de los campos de entrada
-        titulo = self.entry_titulo.get()
-        descripcion = self.entry_texto.get("1.0", "end").strip()
-        ubicacion = self.entry_ubicacion.get()
-        fecha = self.entry_fecha.get()
+        self.titulo = self.entry_titulo.get()
+        self.descripcion = self.entry_texto.get("1.0", "end").strip()
+        self.ubicacion = self.entry_ubicacion.get()
+        self.fecha = self.entry_fecha.get()
 
-        print(f"Título: {titulo}")
-        print(f"Descripción: {descripcion}")
-        print(f"Ubicación: {ubicacion}")
-        print(f"Fecha del evento: {fecha}")
+        print(f"Título: {self.titulo}")
+        print(f"Descripción: {self.descripcion}")
+        print(f"Ubicación: {self.ubicacion}")
+        print(f"Fecha del evento: {self.fecha}")
 
     def perfil(self):
         frame_perfil = ctk.CTkFrame(master=self, fg_color=COLOR_BG)
