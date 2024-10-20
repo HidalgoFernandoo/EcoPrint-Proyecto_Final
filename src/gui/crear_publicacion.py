@@ -1,12 +1,15 @@
 import customtkinter as ctk
 from config.config import *
 from gui.componentes import *
+from core.publicar import *
+from core.usuarios import *
+
+from datetime import datetime  # Para saber la hora actual
 
 
 class FormularioPublicacion:
-    def __init__(self, contenedor, callback_enviar):
+    def __init__(self, contenedor):
         self.contenedor = contenedor
-        self.callback_enviar = callback_enviar  # Función para manejar el envío
 
         self.frame_publicar = ctk.CTkFrame(master=self.contenedor, fg_color=COLOR_BG)
         self.frame_publicar.pack(expand=True, fill="both")
@@ -16,20 +19,30 @@ class FormularioPublicacion:
         formulario_frame.pack(expand=True)
 
         crear_label(
-            formulario_frame, text="Crear Publicación", font=("Roboto", 32, "bold"), pady=(0, 25),
+            formulario_frame,
+            text="Crear Publicación",
+            font=("Roboto", 32, "bold"),
+            pady=(0, 25),
         )
 
         # Campo de entrada para el título
         crear_label(
-            formulario_frame, text=" Título", font=("Roboto", 18, "bold"), pady=(20, 0),
+            formulario_frame,
+            text=" Título",
+            font=("Roboto", 18, "bold"),
+            pady=(20, 0),
             image=crear_imagen("src/assets/title.png", size=(22, 22)),
         )
         self.entry_titulo = crear_entry(
-            formulario_frame, placeholder_text="Título", width=630, pady=0)
+            formulario_frame, placeholder_text="Título", width=630, pady=0
+        )
 
         # Campo de entrada para el texto
         crear_label(
-            formulario_frame, text=" Descripción", font=("Roboto", 18, "bold"), pady=(20, 0),
+            formulario_frame,
+            text=" Descripción",
+            font=("Roboto", 18, "bold"),
+            pady=(20, 0),
             image=crear_imagen("src/assets/description.png", size=(22, 22)),
         )
         self.entry_texto = ctk.CTkTextbox(
@@ -45,15 +58,22 @@ class FormularioPublicacion:
 
         # Campo de entrada para la ubicación
         crear_label(
-            formulario_frame, text=" Ubicación", font=("Roboto", 18, "bold"), pady=(20, 0),
+            formulario_frame,
+            text=" Ubicación",
+            font=("Roboto", 18, "bold"),
+            pady=(20, 0),
             image=crear_imagen("src/assets/location.png", size=(22, 22)),
         )
         self.entry_ubicacion = crear_entry(
-            formulario_frame, placeholder_text="Ubicación", width=630, pady=0)
+            formulario_frame, placeholder_text="Ubicación", width=630, pady=0
+        )
 
         # Campo de entrada para la fecha
         crear_label(
-            formulario_frame, text=" Fecha del evento", font=("Roboto", 18, "bold"), pady=(20, 0),
+            formulario_frame,
+            text=" Fecha del evento",
+            font=("Roboto", 18, "bold"),
+            pady=(20, 0),
             image=crear_imagen("src/assets/calendar.png", size=(22, 22)),
         )
         self.entry_fecha = ctk.CTkComboBox(
@@ -71,7 +91,10 @@ class FormularioPublicacion:
 
         # Botón de enviar
         boton_enviar = crear_boton(
-            formulario_frame, text="Publicar", width=630, command=self.enviar_publicacion,
+            formulario_frame,
+            text="Publicar",
+            width=630,
+            command=self.enviar_publicacion,
             image=crear_imagen("src/assets/send.png", size=(22, 22)),
         )
 
@@ -80,7 +103,14 @@ class FormularioPublicacion:
         titulo = self.entry_titulo.get()
         descripcion = self.entry_texto.get("1.0", "end").strip()
         ubicacion = self.entry_ubicacion.get()
-        fecha = self.entry_fecha.get()
+        fecha_evento = self.entry_fecha.get()
 
-        # Llamar a la función de callback con los datos
-        self.callback_enviar(titulo, descripcion, ubicacion, fecha)
+        # Convertimos la fecha en un formato que la bd puede soportar
+        fecha_evento = datetime.strptime(self.entry_fecha.get(),  "%d/%m/%Y").strftime("%Y-%m-%d")
+        fecha_creacion = datetime.now().date()
+        creador = f"{Usuario.usuario_actual[0]} {Usuario.usuario_actual[1]}"
+
+        # Devolver los datos ingresados para almacenarlos.
+        subir_publicacion_a_bd(
+            titulo, descripcion, ubicacion, fecha_creacion, fecha_evento, creador
+        )

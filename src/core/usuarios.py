@@ -34,6 +34,7 @@ class Usuario:
 
     def verificar_usuario(self, correo_ingresado, contrasena_ingresada):
         try:
+            correo_ingresado = correo_ingresado
             self.__contrasena_ingresada = contrasena_ingresada
             conexion = conectar_db()
             if conexion is None:
@@ -47,13 +48,20 @@ class Usuario:
                 cursor.fetchone()
             )  # Devuelve la primer fila con los valores, si no lo encuentra devuelve none
 
+            consulta = "SELECT nombre, apellido FROM usuarios WHERE correo = %s"
+            cursor.execute(consulta, (correo_ingresado,))
+
+            Usuario.usuario_actual = cursor.fetchone()
+            
+
             cursor.close()
             conexion.close()
 
             if resultado:
                 self.__hashed = resultado[0]  # Obtiene la contraseña del resultado
                 if bcrypt.checkpw(
-                    self.__contrasena_ingresada.encode("utf-8"), self.__hashed.encode("utf-8")
+                    self.__contrasena_ingresada.encode("utf-8"),
+                    self.__hashed.encode("utf-8"),
                 ):
                     return True
                 else:
