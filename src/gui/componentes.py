@@ -208,7 +208,7 @@ class MostrarPublicacion:
         self.contador_label.configure(text=f"{self.contador_votos}")
 
 
-def crear_boton(parent, text, command=None, width=350, pady=20, **kwargs):
+def crear_boton(parent, text, command=None, fill="none", padx=50, width=350, pady=20, **kwargs):
     boton = ctk.CTkButton(
         parent,
         text=text,
@@ -222,7 +222,7 @@ def crear_boton(parent, text, command=None, width=350, pady=20, **kwargs):
         hover_color=COLOR_PRIMARIO_HOVER,
         **kwargs
     )
-    boton.pack(pady=pady, padx=50)
+    boton.pack(pady=pady, padx=padx, fill=fill,)
 
     return boton
 
@@ -252,7 +252,7 @@ def crear_imagen(route, size=(20, 20)):
     return ctk.CTkImage(Image.open(route), size=size)
 
 
-def crear_entry(parent, placeholder_text="", width=350, pady=10, **kwargs):
+def crear_entry(parent, placeholder_text="", padx=0, fill="none", width=350, pady=10, **kwargs):
     entry = ctk.CTkEntry(
         parent,
         placeholder_text=placeholder_text,
@@ -263,7 +263,7 @@ def crear_entry(parent, placeholder_text="", width=350, pady=10, **kwargs):
         border_color=COLOR_PRIMARIO,
         **kwargs
     )
-    entry.pack(pady=pady)
+    entry.pack(pady=pady, padx=padx, fill=fill)
 
     return entry
 

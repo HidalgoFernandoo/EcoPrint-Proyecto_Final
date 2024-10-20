@@ -1,7 +1,7 @@
 import customtkinter as ctk
 from config.config import *
 from gui.componentes import *
-
+from gui.crear_publicacion import *
 
 class InicioFrame(ctk.CTkFrame):
     def __init__(self, master):
@@ -93,81 +93,20 @@ class InicioFrame(ctk.CTkFrame):
 
     def crear_publicacion(self):
         frame_publicar = ctk.CTkFrame(master=self, fg_color=COLOR_BG)
-        frame_publicar.pack(expand=True, fill="both")
 
+        # Función de callback para manejar el envío de la publicación
+        def manejar_enviar_publicacion(titulo, descripcion, ubicacion, fecha):
+            print(f"Título: {titulo}")
+            print(f"Descripción: {descripcion}")
+            print(f"Ubicación: {ubicacion}")
+            print(f"Fecha del evento: {fecha}")
+
+        # Crear instancia del formulario y pasar la función de callback
+        FormularioPublicacion(contenedor=frame_publicar,
+                              callback_enviar=manejar_enviar_publicacion)
+
+        # Cambiar el contenido principal para mostrar el formulario
         self.cambiar_contenido(frame_publicar, "crear_publicacion")
-
-        # Crea el frame del formulario y lo centra dentro de frame_publicar
-        formulario_frame = ctk.CTkFrame(frame_publicar, fg_color=COLOR_BG)
-        formulario_frame.pack(expand=True)
-
-        crear_label(
-            formulario_frame, text="Crear Publicación", font=("Roboto", 32, "bold"), pady=(0, 25),
-        )
-
-        # Campo de entrada para el título
-        crear_label(
-            formulario_frame, text=" Título", font=("Roboto", 18, "bold"), pady=(20, 0), image=crear_imagen("src/assets/title.png", size=(22, 22)),
-        )
-        self.entry_titulo = crear_entry(
-            formulario_frame, placeholder_text="Título", width=630, pady=0)
-
-        # Campo de entrada para el texto
-        crear_label(
-            formulario_frame, text=" Descripción", font=("Roboto", 18, "bold"), pady=(20, 0), image=crear_imagen("src/assets/description.png", size=(22, 22)),
-        )
-        self.entry_texto = ctk.CTkTextbox(
-            formulario_frame,
-            font=("Roboto", 14),
-            border_width=2,
-            border_color=COLOR_PRIMARIO,
-            height=120,
-            width=630,
-            corner_radius=8,
-        )
-        self.entry_texto.pack(pady=0)
-
-        # Campo de entrada para la ubicación
-        crear_label(
-            formulario_frame, text=" Ubicación", font=("Roboto", 18, "bold"), pady=(20, 0), image=crear_imagen("src/assets/location.png", size=(22, 22)),
-        )
-        self.entry_ubicacion = crear_entry(
-            formulario_frame, placeholder_text="Ubicación", width=630, pady=0)
-
-        # Campo de entrada para la fecha
-        crear_label(
-            formulario_frame, text=" Fecha del evento", font=("Roboto", 18, "bold"), pady=(20, 0), image=crear_imagen("src/assets/calendar.png", size=(22, 22)),
-        )
-
-        self.entry_fecha = ctk.CTkComboBox(
-            formulario_frame,
-            width=630,
-            height=40,
-            corner_radius=8,
-            font=("Roboto", 14),
-            border_color=COLOR_PRIMARIO,
-            button_color=COLOR_PRIMARIO,
-            button_hover_color=COLOR_PRIMARIO_HOVER,
-        )
-        self.entry_fecha.pack(padx=10, pady=(0, 10))
-        CTkDatePicker(self.entry_fecha)
-
-        # Botón de enviar
-        boton_enviar = crear_boton(
-            formulario_frame, text="Publicar", width=630, command=self.enviar_publicacion, image=crear_imagen("src/assets/send.png", size=(22, 22)),
-        )
-
-    def enviar_publicacion(self):
-        # Obtener los datos de los campos de entrada
-        self.titulo = self.entry_titulo.get()
-        self.descripcion = self.entry_texto.get("1.0", "end").strip()
-        self.ubicacion = self.entry_ubicacion.get()
-        self.fecha = self.entry_fecha.get()
-
-        print(f"Título: {self.titulo}")
-        print(f"Descripción: {self.descripcion}")
-        print(f"Ubicación: {self.ubicacion}")
-        print(f"Fecha del evento: {self.fecha}")
 
     def perfil(self):
         frame_perfil = ctk.CTkFrame(master=self, fg_color=COLOR_BG)
