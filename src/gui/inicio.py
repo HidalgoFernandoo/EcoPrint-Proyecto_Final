@@ -101,15 +101,8 @@ class InicioFrame(ctk.CTkFrame):
             pady=(30, 10),
         )
 
-        MostrarPublicacion(
-            contenedor=frame_inicio,
-            titulo="Título del Evento",
-            descripcion="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            creador="Juan Perez",
-            fecha_creacion="18/10/2023",
-            fecha_evento="25/10/2024",
-            ubicacion="Ubicación 1234",
-        )
+        publicaciones = Publicaciones()
+        publicaciones.mostrar_publicaciones(contenedor=frame_inicio)
 
         self.cambiar_contenido(frame_inicio, "inicio")
 

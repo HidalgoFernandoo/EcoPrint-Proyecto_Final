@@ -1,7 +1,7 @@
 import customtkinter as ctk
 from config.config import *
 from gui.componentes import *
-from core.publicar import *
+from core.publicaciones import *
 from core.usuarios import *
 
 from datetime import datetime  # Para saber la hora actual
@@ -111,6 +111,7 @@ class FormularioPublicacion:
         creador = f"{Usuario.usuario_actual[0]} {Usuario.usuario_actual[1]}"
 
         # Devolver los datos ingresados para almacenarlos.
-        subir_publicacion_a_bd(
+        publicar = Publicaciones()
+        publicar.subir_publicacion_a_bd(
             titulo, descripcion, ubicacion, fecha_creacion, fecha_evento, creador
         )

@@ -42,14 +42,14 @@ class Usuario:
                 return False
 
             cursor = conexion.cursor()
-            consulta = "SELECT contrasena FROM usuarios WHERE correo = %s"
-            cursor.execute(consulta, (correo_ingresado,))
+            sql = "SELECT contrasena FROM usuarios WHERE correo = %s"
+            cursor.execute(sql, (correo_ingresado,))
             resultado = (
                 cursor.fetchone()
             )  # Devuelve la primer fila con los valores, si no lo encuentra devuelve none
 
-            consulta = "SELECT nombre, apellido FROM usuarios WHERE correo = %s"
-            cursor.execute(consulta, (correo_ingresado,))
+            sql = "SELECT nombre, apellido FROM usuarios WHERE correo = %s"
+            cursor.execute(sql, (correo_ingresado,))
 
             Usuario.usuario_actual = cursor.fetchone()
             
