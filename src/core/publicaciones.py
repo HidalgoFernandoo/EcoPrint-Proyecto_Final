@@ -3,6 +3,7 @@ from database.conexion import *
 from config.config import *
 from PIL import Image
 from gui.componentes import *
+from datetime import datetime
 
 import customtkinter as ctk
 
@@ -57,14 +58,27 @@ class Publicaciones:
         publicaciones = self.obtener_publicaciones()
 
         for publicacion in publicaciones:
+            fecha_edicion = publicacion["fecha_edicion"]
+
+            if fecha_edicion is not None:
+                acomodar_fecha_edicion = fecha_edicion.strftime("%d/%m/%Y")
+            else:
+                acomodar_fecha_edicion = None
+
+            fecha_creacion = publicacion["fecha"]
+            fecha_evento = publicacion["fecha_evento"]
+
+            acomodar_fecha_creacion = fecha_creacion.strftime("%d/%m/%Y")
+            acomodar_fecha_evento = fecha_evento.strftime("%d/%m/%Y")
+
             MostrarPublicacion(
                 contenedor,
                 publicacion["titulo"],
                 publicacion["descripcion"],
                 publicacion["ubicacion"],
-                publicacion["fecha"],
-                publicacion["fecha_edicion"],
-                publicacion["fecha_evento"],
+                acomodar_fecha_creacion,
+                acomodar_fecha_edicion,
+                acomodar_fecha_evento,
                 publicacion["contador_votos"],
                 publicacion["creador"],
             )
