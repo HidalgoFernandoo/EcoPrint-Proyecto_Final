@@ -16,7 +16,7 @@ class FormularioPublicacion:
 
         # Crea el frame del formulario y lo centra dentro de frame_publicar
         formulario_frame = ctk.CTkFrame(self.frame_publicar, fg_color=COLOR_BG)
-        formulario_frame.pack(expand=True)
+        formulario_frame.pack(expand=True, fill="x")
 
         crear_label(
             formulario_frame,
@@ -34,8 +34,7 @@ class FormularioPublicacion:
             image=crear_imagen("src/assets/title.png", size=(22, 22)),
         )
         self.entry_titulo = crear_entry(
-            formulario_frame, placeholder_text="Título", width=630, pady=0
-        )
+            formulario_frame, placeholder_text="Título", width=630, pady=0, padx=190, fill="x")
 
         # Campo de entrada para el texto
         crear_label(
@@ -51,10 +50,9 @@ class FormularioPublicacion:
             border_width=2,
             border_color=COLOR_PRIMARIO,
             height=120,
-            width=630,
             corner_radius=8,
         )
-        self.entry_texto.pack(pady=0)
+        self.entry_texto.pack(pady=0, padx=190, fill="x")
 
         # Campo de entrada para la ubicación
         crear_label(
@@ -65,8 +63,7 @@ class FormularioPublicacion:
             image=crear_imagen("src/assets/location.png", size=(22, 22)),
         )
         self.entry_ubicacion = crear_entry(
-            formulario_frame, placeholder_text="Ubicación", width=630, pady=0
-        )
+            formulario_frame, placeholder_text="Ubicación", width=630, pady=0, padx=190, fill="x")
 
         # Campo de entrada para la fecha
         crear_label(
@@ -86,16 +83,13 @@ class FormularioPublicacion:
             button_color=COLOR_PRIMARIO,
             button_hover_color=COLOR_PRIMARIO_HOVER,
         )
-        self.entry_fecha.pack(padx=10, pady=(0, 10))
+        self.entry_fecha.pack(padx=190, pady=(0, 10), fill="x")
         CTkDatePicker(self.entry_fecha)
 
         # Botón de enviar
         boton_enviar = crear_boton(
-            formulario_frame,
-            text="Publicar",
-            width=630,
-            command=self.enviar_publicacion,
-            image=crear_imagen("src/assets/send.png", size=(22, 22)),
+            formulario_frame, text="Publicar", width=630, command=self.enviar_publicacion,
+            image=crear_imagen("src/assets/send.png", size=(22, 22)), padx=190, fill="x"
         )
 
     def enviar_publicacion(self):
