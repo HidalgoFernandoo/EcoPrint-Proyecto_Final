@@ -31,7 +31,7 @@ class FormularioPublicacion:
             text=" Título",
             font=("Roboto", 18, "bold"),
             pady=(20, 0),
-            image=crear_imagen("src/assets/title.png", size=(22, 22)),
+            image=crear_imagen("src/assets/icons/title.png", size=(22, 22)),
         )
         self.entry_titulo = crear_entry(
             formulario_frame, placeholder_text="Título", width=630, pady=0, padx=190, fill="x")
@@ -42,7 +42,7 @@ class FormularioPublicacion:
             text=" Descripción",
             font=("Roboto", 18, "bold"),
             pady=(20, 0),
-            image=crear_imagen("src/assets/description.png", size=(22, 22)),
+            image=crear_imagen("src/assets/icons/description.png", size=(22, 22)),
         )
         self.entry_texto = ctk.CTkTextbox(
             formulario_frame,
@@ -60,7 +60,7 @@ class FormularioPublicacion:
             text=" Ubicación",
             font=("Roboto", 18, "bold"),
             pady=(20, 0),
-            image=crear_imagen("src/assets/location.png", size=(22, 22)),
+            image=crear_imagen("src/assets/icons/location.png", size=(22, 22)),
         )
         self.entry_ubicacion = crear_entry(
             formulario_frame, placeholder_text="Ubicación", width=630, pady=0, padx=190, fill="x")
@@ -71,7 +71,7 @@ class FormularioPublicacion:
             text=" Fecha del evento",
             font=("Roboto", 18, "bold"),
             pady=(20, 0),
-            image=crear_imagen("src/assets/calendar.png", size=(22, 22)),
+            image=crear_imagen("src/assets/icons/calendar.png", size=(22, 22)),
         )
         self.entry_fecha = ctk.CTkComboBox(
             formulario_frame,
@@ -89,7 +89,7 @@ class FormularioPublicacion:
         # Botón de enviar
         boton_enviar = crear_boton(
             formulario_frame, text="Publicar", width=630, command=self.enviar_publicacion,
-            image=crear_imagen("src/assets/send.png", size=(22, 22)), padx=190, fill="x"
+            image=crear_imagen("src/assets/icons/send.png", size=(22, 22)),
         )
 
     def enviar_publicacion(self):

@@ -41,35 +41,35 @@ class InicioFrame(ctk.CTkFrame):
             text="Inicio",
             command=self.inicio,
             pady=0,
-            image=crear_imagen("src/assets/home.png"),
+            image=crear_imagen("src/assets/icons/home.png"),
         )
 
         self.botones_sideframe["crear_publicacion"] = crear_boton_sideframe(
             centrar_frame,
             text="Crear publicación",
             command=self.crear_publicacion,
-            image=crear_imagen("src/assets/pencil-plus.png"),
+            image=crear_imagen("src/assets/icons/pencil-plus.png"),
         )
 
         self.botones_sideframe["perfil"] = crear_boton_sideframe(
             centrar_frame,
             text="Mi perfil",
             command=self.perfil,
-            image=crear_imagen("src/assets/user-circle-white.png"),
+            image=crear_imagen("src/assets/icons/user-circle-white.png"),
         )
 
         self.botones_sideframe["configuracion"] = crear_boton_sideframe(
             centrar_frame,
             text="Configuración",
             command=self.configuraciones,
-            image=crear_imagen("src/assets/settings.png"),
+            image=crear_imagen("src/assets/icons/settings.png")
         )
 
         self.botones_sideframe["cerrar_sesion"] = crear_boton_sideframe(
             centrar_frame,
             text="Cerrar sesión",
             command=self.cerrar_sesion,
-            image=crear_imagen("src/assets/logout.png"),
+            image=crear_imagen("src/assets/icons/logout.png"),
         )
 
     def actualizar_estado_botones(self, boton_activo):
