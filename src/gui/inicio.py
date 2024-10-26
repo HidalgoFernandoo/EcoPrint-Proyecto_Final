@@ -59,9 +59,7 @@ class InicioFrame(ctk.CTkFrame):
         )
 
         self.botones_sideframe["configuracion"] = crear_boton_sideframe(
-            centrar_frame,
-            text="Configuración",
-            command=self.configuraciones,
+            centrar_frame, text="Configuración", command=self.configuracion,
             image=crear_imagen("src/assets/icons/settings.png")
         )
 
@@ -124,8 +122,9 @@ class InicioFrame(ctk.CTkFrame):
         )
         self.cambiar_contenido(frame_perfil, "perfil")
 
-    def configuraciones(self):
-        frame_configuracion = ctk.CTkFrame(master=self, fg_color=COLOR_BG)
+    def configuracion(self):
+        frame_configuracion = ctk.CTkFrame(
+            master=self, fg_color=COLOR_BG)
         crear_label(
             frame_configuracion,
             text="Configuración",
