@@ -20,7 +20,7 @@ class Usuario:
         try:
             self.__hashed = self.encriptar_contrasena()
             valores = (self.correo, self.__hashed, self.nombre, self.apellido)
-            sql = "insert into usuarios values(null, %s, %s, %s, %s)"
+            sql = "insert into usuarios values(null, %s, %s, %s, %s, 'usuario')"
 
             conexion = conectar_db()
             cursor = conexion.cursor()
@@ -48,7 +48,7 @@ class Usuario:
                 cursor.fetchone()
             )  # Devuelve la primer fila con los valores, si no lo encuentra devuelve none
 
-            sql = "SELECT nombre, apellido FROM usuarios WHERE correo = %s"
+            sql = "SELECT nombre, apellido, rol FROM usuarios WHERE correo = %s"
             cursor.execute(sql, (correo_ingresado,))
 
             Usuario.usuario_actual = cursor.fetchone()

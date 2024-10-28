@@ -25,8 +25,10 @@ class App(ctk.CTk):
         # Cambiar al nuevo frame seleccionado
         if frame_nombre == "login":
             self.frame_actual = LoginFrame(self, self.frame_cambiar)
+
         if frame_nombre == "registrar":
             self.frame_actual = RegistroFrame(self, self.frame_cambiar)
+
         if frame_nombre == "inicio":
             self.frame_actual = InicioFrame(self)
 

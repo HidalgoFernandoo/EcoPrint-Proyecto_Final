@@ -2,6 +2,7 @@ import customtkinter as ctk
 from config.config import *
 from gui.componentes import *
 from gui.crear_publicacion import *
+from core.usuarios import *
 
 
 class InicioFrame(ctk.CTkFrame):
@@ -11,7 +12,12 @@ class InicioFrame(ctk.CTkFrame):
         self.frame_contenido = None
         self.botones_sideframe = {}  # Diccionario para almacenar botones del sideFrame
         self.side_frame()
-        self.inicio()  # Carga el frame de inicio por defecto
+        
+        if Usuario.usuario_actual[2].strip('"') == "usuario":
+            self.inicio()
+
+        if Usuario.usuario_actual[2].strip('"') == "administrador":
+            self.inicio_administrador()
 
     def side_frame(self):
         sideFrame = ctk.CTkFrame(master=self, width=240, fg_color=COLOR_PRIMARIO)
@@ -98,7 +104,19 @@ class InicioFrame(ctk.CTkFrame):
             font=("Roboto", 32, "bold"),
             pady=(30, 10),
         )
+        publicaciones = Publicaciones()
+        publicaciones.mostrar_publicaciones(contenedor=frame_inicio)
 
+        self.cambiar_contenido(frame_inicio, "inicio")
+
+    def inicio_administrador(self):
+        frame_inicio = ctk.CTkScrollableFrame(master=self, fg_color=COLOR_BG)
+        crear_label(
+            frame_inicio,
+            text="Inicio ADMINISTRADOR",
+            font=("Roboto", 32, "bold"),
+            pady=(30, 10),
+        )
         publicaciones = Publicaciones()
         publicaciones.mostrar_publicaciones(contenedor=frame_inicio)
 
