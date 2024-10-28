@@ -102,7 +102,7 @@ class MostrarPublicacion:
         self.descripcion = descripcion
         self.ubicacion = ubicacion
         self.fecha_creacion = fecha_creacion
-        self.fecha_edicion = fecha_edicion  
+        self.fecha_edicion = fecha_edicion
         self.fecha_evento = fecha_evento
         self.contador_votos = contador_votos
         self.creador = creador
@@ -159,7 +159,7 @@ class MostrarPublicacion:
             text=f" Creador: {self.creador}",
             font=("Roboto", 12, "bold"),
             compound="left",
-            image=crear_imagen("src/assets/user-circle.png"),
+            image=crear_imagen("src/assets/icons/user-circle.png"),
             text_color=COLOR_PRIMARIO_HOVER,
         )
         creador_label.grid(row=0, column=0, padx=5, pady=0, sticky="w")
@@ -171,7 +171,7 @@ class MostrarPublicacion:
                 text=f" Fecha de creación: {self.fecha_edicion}",
                 font=("Roboto", 12, "bold"),
                 compound="left",
-                image=crear_imagen("src/assets/calendar-user.png"),
+                image=crear_imagen("src/assets/icons/calendar-user.png"),
                 text_color=COLOR_PRIMARIO_HOVER,
             )
             fecha_edicion_label.grid(row=1, column=0, padx=5, pady=0, sticky="w")
@@ -182,7 +182,7 @@ class MostrarPublicacion:
                 text=f" Fecha de creación: {self.fecha_creacion}",
                 font=("Roboto", 12, "bold"),
                 compound="left",
-                image=crear_imagen("src/assets/calendar-user.png"),
+                image=crear_imagen("src/assets/icons/calendar-user.png"),
                 text_color=COLOR_PRIMARIO_HOVER,
             )
             fecha_creacion_label.grid(row=1, column=0, padx=5, pady=0, sticky="w")
@@ -193,7 +193,7 @@ class MostrarPublicacion:
             text=f" Fecha del evento: {self.fecha_evento}",
             font=("Roboto", 12, "bold"),
             compound="left",
-            image=crear_imagen("src/assets/calendar-stats.png"),
+            image=crear_imagen("src/assets/icons/calendar-stats.png"),
             text_color=COLOR_PRIMARIO_HOVER,
         )
         fecha_evento_label.grid(row=1, column=1, padx=5, pady=0, sticky="e")
@@ -204,7 +204,7 @@ class MostrarPublicacion:
             text=f" Ubicación: {self.ubicacion}",
             font=("Roboto", 12, "bold"),
             compound="left",
-            image=crear_imagen("src/assets/map.png"),
+            image=crear_imagen("src/assets/icons/map.png"),
             text_color=COLOR_PRIMARIO_HOVER,
         )
         ubicacion_label.grid(row=0, column=1, padx=5, pady=0, sticky="e")
@@ -228,7 +228,7 @@ class MostrarPublicacion:
             font=("Roboto", 14, "bold"),
             command=lambda: self.votar(),
             compound="left",
-            image=crear_imagen("src/assets/thumb-up.png"),
+            image=crear_imagen("src/assets/icons/thumb-up.png"),
         )
         boton_voto_positivo.pack(side="left", fill="x", padx=5, expand=True)
 
@@ -255,7 +255,7 @@ class MostrarPublicacion:
             font=("Roboto", 14, "bold"),
             command=lambda: self.participar(),
             compound="right",
-            image=crear_imagen("src/assets/mood-plus.png"),
+            image=crear_imagen("src/assets/icons/mood-plus.png"),
         )
         boton_participar.pack(side="left", fill="x", padx=5, expand=True)
 
