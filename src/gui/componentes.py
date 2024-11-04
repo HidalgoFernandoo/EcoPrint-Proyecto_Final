@@ -159,3 +159,22 @@ def crear_label(parent, text="", pady=10, anchor="w", padx=170, text_color=COLOR
     label.pack(pady=pady, padx=padx, fill="x")
 
     return label
+
+
+def crear_stat(parent, titulo, contador, padx=0):
+    label_stat = ctk.CTkLabel(
+        parent,
+        text=f"{titulo}\n {contador}",
+        height=40,
+        width=150,
+        anchor="center",
+        corner_radius=8,
+        font=("Roboto", 18, "bold"),
+        text_color=COLOR_BG,
+        fg_color=COLOR_PRIMARIO,
+    )
+
+    # Asegurar que el label se expanda adecuadamente
+    label_stat.pack(side="left", expand=True, fill="x", padx=padx, pady=0, ipady=20, ipadx=20)
+
+    return label_stat

@@ -3,6 +3,7 @@ from config.config import *
 from gui.componentes import *
 from gui.crear_publicacion import *
 from core.usuarios import *
+from gui.perfil import *
 
 
 class InicioFrame(ctk.CTkFrame):
@@ -132,12 +133,9 @@ class InicioFrame(ctk.CTkFrame):
 
     def perfil(self):
         frame_perfil = ctk.CTkFrame(master=self, fg_color=COLOR_BG)
-        crear_label(
-            frame_perfil,
-            text="Mi perfil",
-            font=("Roboto", 32, "bold"),
-            pady=(30, 10),
-        )
+        
+        
+        Perfil(contenedor=frame_perfil)
         self.cambiar_contenido(frame_perfil, "perfil")
 
     def configuracion(self):
@@ -149,6 +147,11 @@ class InicioFrame(ctk.CTkFrame):
             font=("Roboto", 32, "bold"),
             pady=(30, 10),
         )
+        
+        crear_label(frame_configuracion, text="Tema", font=("Roboto", 18, "bold"))
+        crear_label(frame_configuracion, text="Cambiar nombre", font=("Roboto", 18, "bold"))
+        crear_label(frame_configuracion, text="Cambiar contraseña", font=("Roboto", 18, "bold"))
+        
         self.cambiar_contenido(frame_configuracion, "configuracion")
 
     def cerrar_sesion(self):
