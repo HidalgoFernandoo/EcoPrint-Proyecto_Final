@@ -13,6 +13,9 @@ Esta aplicación está diseñada para conectar a personas interesadas en la cons
 - MySQL
 - Tkinter
 - [CustomTkinter](https://customtkinter.tomschimansky.com/)
+- [CTKdlib](https://github.com/Akascape/CTkDesigner-Support)
+- PIL
+- Email Validator
 
 ## 💻 Visuales
 <!-- Capturas de pantalla, videos o GIFs que demuestran lo que hace el proyecto -->
