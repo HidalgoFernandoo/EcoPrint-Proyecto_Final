@@ -88,8 +88,8 @@ class FormularioPublicacion:
 
         # Botón de enviar
         boton_enviar = crear_boton(
-            formulario_frame, text="Publicar", width=630, command=self.enviar_publicacion,
-            image=crear_imagen("src/assets/icons/send.png", size=(22, 22)),
+            formulario_frame, text="Publicar", command=self.enviar_publicacion,
+            image=crear_imagen("src/assets/icons/send.png", size=(22, 22)), fill="x", padx=190
         )
 
     def enviar_publicacion(self):

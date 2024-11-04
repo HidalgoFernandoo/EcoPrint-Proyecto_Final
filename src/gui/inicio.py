@@ -3,6 +3,7 @@ from config.config import *
 from gui.componentes import *
 from gui.crear_publicacion import *
 from core.usuarios import *
+from gui.perfil import *
 
 
 class InicioFrame(ctk.CTkFrame):
