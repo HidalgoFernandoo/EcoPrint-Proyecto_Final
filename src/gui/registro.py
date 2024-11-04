@@ -11,47 +11,103 @@ class RegistroFrame(ctk.CTkFrame):
         super().__init__(master)
         self.frame_cambiar = frame_cambiar
 
-        self.label_registrar = crear_label(
-            self, text="Registrarse", font=("", 18, "bold")
+        frameFondo = ctk.CTkFrame(master=self, fg_color=COLOR_BG)
+        frameFondo.pack(expand=True, fill="both")
+
+        
+        # Frame izquierdo con imagen
+        imgFrame = ctk.CTkFrame(
+            master=frameFondo, width=1000, fg_color="#e3f0df")
+        imgFrame.pack(side="left", fill="y")
+
+        # Cargar imagen y ajustarla con CTkImage
+        self.image_original = Image.open("src/assets/pic.jpeg")
+        self.image_ctk = ctk.CTkImage(self.image_original, size=(
+            imgFrame.winfo_width(), imgFrame.winfo_height()))
+
+        # Label con la imagen redimensionable
+        self.image_label = ctk.CTkLabel(
+            imgFrame, text="", image=self.image_ctk)
+        self.image_label.pack(expand=True, fill="both")
+
+        # Redimensionar la imagen al cambiar el tamaño de imgFrame
+        imgFrame.bind("<Configure>", self.resize_image)
+
+        # Botón en el frame izquierdo
+        self.login_button = crear_boton(
+            imgFrame, text="", fill="x", width=470)
+
+        crear_boton(
+            imgFrame, text="", fill="x", width=470)
+
+        # Frame derecho con formulario de registro
+        frameRegistro = ctk.CTkFrame(master=frameFondo, fg_color=COLOR_BG)
+        frameRegistro.pack(expand=True, fill="x")
+
+        self.label_bienvenida = crear_label(
+            frameRegistro, text="Registrarse", font=("Roboto", 32, "bold"), pady=0, padx=(110, 170), anchor="center"
         )
 
-        self.usuario_correo = crear_entry(self, placeholder_text="Correo electrónico")
+        crear_label(frameRegistro, text=" Correo electrónico", font=("Roboto", 18, "bold"), pady=(20, 0), padx=(90, 170),
+                    image=crear_imagen(
+                        "src/assets/icons/login-mail.png", size=(22, 22))
+                    )
 
-        self.usuario_nombre = crear_entry(self, placeholder_text="Nombre")
+        self.usuario_correo = crear_entry(
+            frameRegistro, placeholder_text="Correo electrónico", padx=(110, 170), pady=0, fill="x")
 
-        self.usuario_apellido = crear_entry(self, placeholder_text="Apellido")
+        crear_label(frameRegistro, text=" Nombre", font=("Roboto", 18, "bold"), pady=(20, 0), padx=(90, 170),
+                    image=crear_imagen(
+                        "src/assets/icons/user.png", size=(22, 22))
+                    )
+        self.usuario_nombre = crear_entry(
+            frameRegistro, placeholder_text="Nombre", padx=(110, 170), pady=0, fill="x")
+
+        crear_label(frameRegistro, text=" Apellido", font=("Roboto", 18, "bold"), pady=(20, 0), padx=(90, 170),
+                    image=crear_imagen(
+                        "src/assets/icons/user.png", size=(22, 22))
+                    )
+
+        self.usuario_apellido = crear_entry(
+            frameRegistro, placeholder_text="Apellido", padx=(110, 170), pady=0, fill="x")
+
+        crear_label(frameRegistro, text=" Contraseña", font=("Roboto", 18, "bold"), pady=(20, 0), padx=(90, 170),
+                    image=crear_imagen(
+                        "src/assets/icons/login-password.png", size=(22, 22))
+                    )
 
         self.__usuario_contrasena = crear_entry(
-            self, show="*", placeholder_text="Contraseña"
+            frameRegistro, show="*", placeholder_text="**********", padx=(110, 170), pady=0, fill="x"
         )
 
         self.registrar_button = crear_boton(
-            self, text="Registrarse", command=self.verificar_campos
+            frameRegistro, text="Registrarse", command=self.verificar_campos, padx=(110, 170), fill="x"
         )
 
-        self.frameTerminos = ctk.CTkFrame(self, fg_color="transparent")
-        self.frameTerminos.pack(pady=(0, 10), padx=105, fill="x")
+        self.registrar_button = crear_boton(
+            frameRegistro, text="Volver", command=self.volver_login, padx=(110, 170), pady=0, fill="x"
+        )
 
         self.terminosCheckbox = ctk.CTkCheckBox(
-            self, width=0, text="", onvalue="on", offvalue="off"
+            frameRegistro, width=0, text="", onvalue="on", offvalue="off"
         )
-        self.terminosCheckbox.pack(pady=0, padx=0, side="left")
+        self.terminosCheckbox.pack(pady=0, padx=(110, 0), side="left")
 
         self.terminos_button = ctk.CTkButton(
-            self,
-            width=310,
+            frameRegistro,
             fg_color="transparent",
             text="Acepto los términos y condiciones",
             text_color="black",
             anchor="w",
             command=self.ver_terminos,
         )
-        self.terminos_button.pack(pady=0, padx=0, fill="x", side="left")
-
-        self.volver_login = ctk.CTkButton(
-            self, text="volver", command=self.volver_login
-        )
-        self.volver_login.pack(pady=(0, 10), padx=0)
+        self.terminos_button.pack(pady=0, padx=0, side="left")
+    
+    def resize_image(self, event):
+        # Ajusta la imagen al tamaño actual de imgFrame
+        new_width = event.width
+        new_height = event.height
+        self.image_ctk.configure(size=(new_width, new_height))
 
     def ver_terminos(self):
         Terminos_CondicionesFrame(self)
@@ -66,9 +122,9 @@ class RegistroFrame(ctk.CTkFrame):
             return
         if (
             not self.__usuario_contrasena.get()
-            or len(self.__usuario_contrasena.get()) < 10
+            or len(self.__usuario_contrasena.get()) < 8
         ):
-            # FALTA label debes ingresar una contrasena válida, recuerda que debe tener al menos 10 caracteres
+            # FALTA label debes ingresar una contrasena válida, recuerda que debe tener al menos 8 caracteres
             return
 
         if not self.usuario_nombre.get():

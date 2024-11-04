@@ -29,7 +29,8 @@ class CTkDatePicker(ctk.CTkToplevel):
         self.frame = ctk.CTkFrame(self)
         self.frame.pack(fill="both", expand=True)
 
-        self.calendar = ctkdlib.CTkCalendar(self.frame, command=self._pass, **kwargs)
+        self.calendar = ctkdlib.CTkCalendar(
+            self.frame, command=self._pass, **kwargs)
         self.calendar.pack(expand=True, fill="both")
 
         self.update_idletasks()
@@ -69,7 +70,8 @@ class CTkDatePicker(ctk.CTkToplevel):
         x_pos = self.attach.winfo_rootx()
         y_pos = self.attach.winfo_rooty() + self.attach.winfo_reqheight()
 
-        self.geometry("{}x{}+{}+{}".format(self.width, self.height, x_pos, y_pos))
+        self.geometry("{}x{}+{}+{}".format(self.width,
+                      self.height, x_pos, y_pos))
 
 
 def crear_boton(
@@ -140,20 +142,20 @@ def crear_entry(
     return entry
 
 
-def crear_label(parent, text="", pady=10, font=("Roboto", 14), **kwargs):
+def crear_label(parent, text="", pady=10, anchor="w", padx=170, text_color=COLOR_PRIMARIO, font=("Roboto", 14), **kwargs):
     label = ctk.CTkLabel(
         parent,
         text=text,
         width=700,
         height=40,
         wraplength=500,
-        anchor="w",
+        anchor=anchor,
         corner_radius=8,
         font=font,
-        text_color=COLOR_PRIMARIO,
+        text_color=text_color,
         compound="left",
         **kwargs,
     )
-    label.pack(pady=pady, padx=170, fill="x")
+    label.pack(pady=pady, padx=padx, fill="x")
 
     return label
